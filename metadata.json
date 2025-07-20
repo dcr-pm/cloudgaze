@@ -1,0 +1,7 @@
+{
+  "name": "Cloud Gazer AI",
+  "description": "An application that uses the Gemini API to find and describe shapes in clouds from a user-provided picture.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
