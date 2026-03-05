@@ -1,27 +1,35 @@
-
-import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import About from './components/About';
-import Services from './components/Services';
-import Products from './components/Products';
+import React, { useState, useRef, useCallback } from 'react';
+import { ColorTheme } from './types';
+import LightCanvas from './components/LightCanvas';
+import Controls from './components/Controls';
 
 const App: React.FC = () => {
+  const [theme, setTheme] = useState<ColorTheme>('rainbow');
+  const [autoMode, setAutoMode] = useState(false);
+  const [lightCount, setLightCount] = useState(0);
+  const clearFnRef = useRef<(() => void) | null>(null);
+
+  const handleClear = useCallback(() => {
+    if (clearFnRef.current) clearFnRef.current();
+  }, []);
+
   return (
-    <div className="flex flex-col min-h-screen font-sans">
-      <Header />
-      <main className="flex-grow container mx-auto px-4 py-8 md:py-16">
-        <Routes>
-          <Route path="/" element={<Navigate to="/about" replace />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/products" element={<Products />} />
-        </Routes>
-      </main>
-      <Footer />
-      <elevenlabs-convai agent-id="agent_8901k17b9zxvfp3rey53t7bfg67w"></elevenlabs-convai>
-    </div>
+    <>
+      <LightCanvas
+        theme={theme}
+        autoMode={autoMode}
+        onLightCountChange={setLightCount}
+        clearRef={clearFnRef}
+      />
+      <Controls
+        theme={theme}
+        onThemeChange={setTheme}
+        autoMode={autoMode}
+        onAutoToggle={() => setAutoMode((prev) => !prev)}
+        onClear={handleClear}
+        lightCount={lightCount}
+      />
+    </>
   );
 };
 

@@ -1,14 +1,18 @@
-export interface CloudShape {
-  shape: string;
-  description: string;
+export interface Light {
+  id: number;
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  radius: number;
+  hue: number;
+  saturation: number;
+  lightness: number;
+  opacity: number;
+  pulseSpeed: number;
+  pulsePhase: number;
+  life: number;
+  maxLife: number;
 }
 
-export type AnalysisResult = CloudShape[];
-
-export enum AppState {
-  IDLE,
-  CAMERA_ACTIVE,
-  ANALYZING,
-  RESULTS_SHOWN,
-  ERROR,
-}
+export type ColorTheme = 'rainbow' | 'warm' | 'cool' | 'neon' | 'pastel';
