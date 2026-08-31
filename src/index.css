@@ -1,0 +1,57 @@
+@import 'tailwindcss';
+
+/* Tailwind v4 is CSS-first: no tailwind.config.js, no postcss.config.js, and no
+   `content` glob to get wrong. Theme tokens live here. */
+@theme {
+  /* Parent identity colours. Kept to six so two parents always read as clearly
+     distinct, and every one of them passes contrast against white text. */
+  --color-parent-indigo: oklch(0.55 0.19 275);
+  --color-parent-teal: oklch(0.62 0.12 195);
+  --color-parent-rose: oklch(0.62 0.19 15);
+  --color-parent-amber: oklch(0.72 0.16 75);
+  --color-parent-violet: oklch(0.55 0.21 305);
+  --color-parent-emerald: oklch(0.62 0.15 155);
+
+  --color-parent-indigo-soft: oklch(0.95 0.03 275);
+  --color-parent-teal-soft: oklch(0.95 0.03 195);
+  --color-parent-rose-soft: oklch(0.95 0.03 15);
+  --color-parent-amber-soft: oklch(0.95 0.04 75);
+  --color-parent-violet-soft: oklch(0.95 0.03 305);
+  --color-parent-emerald-soft: oklch(0.95 0.03 155);
+}
+
+/* ── Mobile hygiene ─────────────────────────────────────────────────────── */
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  /* Stops the whole page rubber-banding behind fixed chrome on iOS. */
+  overscroll-behavior-y: none;
+  background: var(--color-slate-50);
+  color: var(--color-slate-900);
+}
+
+/* iOS zooms the viewport when a focused input is under 16px. Non-negotiable. */
+input,
+select,
+textarea {
+  font-size: 16px;
+}
+
+/* Respect the home indicator / notch. Used by the tab bar and sheets. */
+:root {
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

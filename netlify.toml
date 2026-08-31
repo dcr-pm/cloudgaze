@@ -1,0 +1,57 @@
+# ─── Deploy-button prompts ───────────────────────────────────────────────────
+# Read ONLY during a "Deploy to Netlify" button deploy, where each key becomes a
+# labelled input and the string becomes its help text. Inert for every ordinary
+# build, so it cannot affect the normal deploy path.
+#
+# This is not where the variable is configured — it is where the button learns
+# to ask for it. For a manual import, set it under
+# Site configuration → Environment variables.
+[template.environment]
+  FAMILY_CODE_PEPPER = "Required. 64 random hex characters. Generate with: node -e \"console.log(require('crypto').randomBytes(32).toString('hex'))\" — the functions refuse to start without it, and changing it later invalidates every existing family code."
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # @netlify/blobs@11 requires Node >= 22.12.0
+  NODE_VERSION = "22"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# `netlify dev` runs Vite behind the function router so /api/* works locally
+# exactly as it does in production.
+[dev]
+  command = "npm run dev:vite"
+  targetPort = 5173
+  port = 8888
+  framework = "#custom"
+  autoLaunch = false
+
+# ─── SPA fallback ────────────────────────────────────────────────────────────
+# MUST be the last rule and MUST NOT be `force = true`.
+#
+# Netlify redirects are fallbacks by default: this only fires when nothing else
+# matched, including a function's declared `config.path`. Adding `force = true`
+# here — a common "fix" when a deep link 404s — would shadow every /api/*
+# function and take the whole backend down. Don't.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "no-referrer"
+    Permissions-Policy = "geolocation=(), camera=(), microphone=()"
+
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Cache-Control = "no-store, private"
+    X-Robots-Tag = "noindex, nofollow"
