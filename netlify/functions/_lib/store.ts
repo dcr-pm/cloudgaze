@@ -85,10 +85,16 @@ export async function mutateFamily(
       throw new ConflictError('no etag returned; refusing an unsafe write');
     }
 
-    const next = apply(structuredClone(current.data) as FamilyState);
+    // Clone first so a reducer that mutates its argument can't corrupt the
+    // value we still need for the identity check below.
+    const snapshot = structuredClone(current.data) as FamilyState;
+    const next = apply(snapshot);
 
-    // Nothing changed (e.g. deleting an already-deleted entry). Skip the write.
-    if (next === current.data) {
+    // Nothing changed (e.g. deleting an already-deleted entry) — applyOps
+    // returns its argument untouched. Compare against the SNAPSHOT, not
+    // current.data: next is derived from the clone, so it could never be
+    // identical to the original and this path would never fire.
+    if (next === snapshot) {
       return { state: next, rev: current.etag };
     }
 
