@@ -1,11 +1,34 @@
+import { AppStateProvider } from './state/AppStateProvider';
+import { OnboardingGate } from './components/setup/OnboardingGate';
+import { AppShell } from './components/shell/AppShell';
+import { useNavigation } from './state/useHashRoute';
+import { CalendarTab } from './components/calendar/CalendarTab';
+import { ActivitiesTab } from './components/activities/ActivitiesTab';
+import { ExpensesTab } from './components/expenses/ExpensesTab';
+import { SettingsTab } from './components/settings/SettingsTab';
+
 export default function App() {
   return (
-    <div className="flex min-h-dvh items-center justify-center p-6">
-      <div className="text-center">
-        <div className="text-5xl">🏠</div>
-        <h1 className="mt-4 text-2xl font-semibold text-slate-900">Kin</h1>
-        <p className="mt-1 text-sm text-slate-500">Skeleton is up.</p>
-      </div>
-    </div>
+    <AppStateProvider>
+      <OnboardingGate>
+        <AppShell>
+          <Routed />
+        </AppShell>
+      </OnboardingGate>
+    </AppStateProvider>
   );
+}
+
+function Routed() {
+  const { route } = useNavigation();
+  switch (route.tab) {
+    case 'calendar':
+      return <CalendarTab />;
+    case 'activities':
+      return <ActivitiesTab />;
+    case 'expenses':
+      return <ExpensesTab />;
+    case 'settings':
+      return <SettingsTab />;
+  }
 }
