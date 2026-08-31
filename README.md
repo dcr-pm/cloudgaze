@@ -3,6 +3,13 @@
 A shared record of what's happening with the kids, for two parents who don't
 live together. One parent logs something; the other sees it.
 
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/dcr-pm/cloudgaze)
+
+> The button deploys this repo's **default branch** and **clones** it into your
+> Git account. If `main` isn't current, or you want to deploy this repo rather
+> than a copy of it, use [the manual import](#deploying) instead — it lets you
+> pick a branch.
+
 Three sections, all views over one shared log:
 
 - **📅 Calendar** — one-off plans. Camping trips, doctor's appointments, school
@@ -39,8 +46,22 @@ npm test            # vitest
 
 ### Deploying
 
-Netlify, from `netlify.toml` as committed. Set one environment variable in
-**Site configuration → Environment variables**:
+Netlify, from `netlify.toml` as committed — build command, publish directory and
+functions directory are all already set, so there's nothing to configure by
+hand. Two routes:
+
+**The deploy button** (top of this file). Clones the repo into your Git account,
+deploys the default branch, and prompts for `FAMILY_CODE_PEPPER` during setup.
+Good for handing someone their own copy. Only useful once `main` holds the code
+you actually want.
+
+**Manual import**, which is the right one for deploying *this* repo:
+
+1. **Add new site → Import an existing project** → pick the repo and branch
+2. Leave the build settings alone
+3. **Site configuration → Environment variables** → add `FAMILY_CODE_PEPPER`
+
+Either way, that variable is not optional:
 
 | Variable | Value |
 | --- | --- |
@@ -50,8 +71,10 @@ Netlify, from `netlify.toml` as committed. Set one environment variable in
 node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 ```
 
-Use the **same value** locally and in Netlify. Changing it after launch makes
-every existing family code stop resolving — treat it as permanent.
+The functions refuse to derive blob keys without it, so the site will build but
+every API call will fail until it's set. Use the **same value** locally and in
+Netlify. Changing it after launch makes every existing family code stop
+resolving — treat it as permanent.
 
 ---
 

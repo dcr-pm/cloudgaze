@@ -1,3 +1,14 @@
+# ─── Deploy-button prompts ───────────────────────────────────────────────────
+# Read ONLY during a "Deploy to Netlify" button deploy, where each key becomes a
+# labelled input and the string becomes its help text. Inert for every ordinary
+# build, so it cannot affect the normal deploy path.
+#
+# This is not where the variable is configured — it is where the button learns
+# to ask for it. For a manual import, set it under
+# Site configuration → Environment variables.
+[template.environment]
+  FAMILY_CODE_PEPPER = "Required. 64 random hex characters. Generate with: node -e \"console.log(require('crypto').randomBytes(32).toString('hex'))\" — the functions refuse to start without it, and changing it later invalidates every existing family code."
+
 [build]
   command = "npm run build"
   publish = "dist"
