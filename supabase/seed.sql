@@ -19,7 +19,7 @@ insert into auth.users (
    '{"provider":"email","providers":["email"]}', '{"display_name":"Sam"}', now(), now(), '', '', '', ''),
   ('00000000-0000-0000-0000-000000000000', 'a0000000-0000-4000-8000-000000000003',
    'authenticated', 'authenticated', 'rosa@kidlog.test', '', now(),
-   '{"provider":"email","providers":["email"]}', '{"display_name":"Grandma Rosa"}', now(), now(), '', '', '', '');
+   '{"provider":"email","providers":["email"]}', '{"display_name":"Rosa"}', now(), now(), '', '', '', '');
 
 insert into auth.identities (id, user_id, provider_id, provider, identity_data, last_sign_in_at, created_at, updated_at)
 select gen_random_uuid(), u.id, u.id::text, 'email',
