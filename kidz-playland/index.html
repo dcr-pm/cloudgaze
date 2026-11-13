@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kidz Playland | Indoor Playground in Peterborough, ON</title>
+<meta name="description" content="5,000 sq ft of slides, obstacles, trampolines and ball pits at 660 The Kingsway, Peterborough. Drop-in play and birthday parties.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --deep:#0d3b2c; --leaf:#1c7a4c; --lime:#8fd14f; --sun:#ffc83a; --coral:#ff6a48;
+  --sky:#35b1e6; --grape:#7b5cff; --cream:#fff8e9; --card:#ffffff; --ink:#17322a;
+  --muted:#5c7168; --line:#e7dcc3; --radius:22px;
+  --display:"Fredoka","Trebuchet MS",system-ui,sans-serif;
+  --body:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--display);line-height:1.08;margin:0;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+button{font:inherit;cursor:pointer}
+.wrap{width:min(1160px,100% - 32px);margin-inline:auto}
+:focus-visible{outline:3px solid var(--grape);outline-offset:3px;border-radius:8px}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:20;background:rgba(13,59,44,.94);backdrop-filter:blur(8px);color:#fff}
+.nav .wrap{display:flex;align-items:center;gap:20px;height:64px}
+.logo{font-family:var(--display);font-weight:700;font-size:1.35rem;text-decoration:none;display:flex;align-items:center;gap:10px;white-space:nowrap}
+.logo i{display:flex;gap:3px}
+.logo i b{width:11px;height:11px;border-radius:50%;display:block}
+.nav nav{margin-left:auto;display:flex;gap:22px;font-weight:700;font-size:.95rem}
+.nav nav a{text-decoration:none;opacity:.85}
+.nav nav a:hover{opacity:1}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:13px 24px;font-family:var(--display);font-weight:600;font-size:1.02rem;text-decoration:none;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-sun{background:var(--sun);color:#3a2a00;box-shadow:0 5px 0 #d79f12}
+.btn-coral{background:var(--coral);color:#fff;box-shadow:0 5px 0 #cf4426}
+.btn-ghost{background:rgba(255,255,255,.12);color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.45)}
+.nav .btn{padding:9px 18px;font-size:.95rem;box-shadow:none;white-space:nowrap}
+section,#find{scroll-margin-top:64px}
+@media (max-width:420px){.logo{font-size:1.1rem}.nav .btn{padding:8px 13px;font-size:.85rem}.nav .wrap{gap:10px}}
+@media (max-width:820px){.nav nav{display:none}.nav .btn{margin-left:auto}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;background:radial-gradient(1200px 500px at 80% -10%,#2a9a61 0%,transparent 60%),linear-gradient(180deg,var(--deep),#12563c);color:#fff;overflow:hidden}
+.hero .wrap{position:relative;z-index:2;padding:64px 0 250px}
+.pill{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.13);border-radius:999px;padding:7px 15px;font-weight:800;font-size:.9rem}
+.dot{width:10px;height:10px;border-radius:50%;background:#9aa}
+.dot.open{background:#7dfc9a;box-shadow:0 0 0 0 rgba(125,252,154,.7);animation:ping 1.8s infinite}
+.dot.closed{background:#ff9b85}
+@keyframes ping{to{box-shadow:0 0 0 12px rgba(125,252,154,0)}}
+.hero h1{font-size:clamp(2.7rem,8vw,5.6rem);font-weight:700;margin:22px 0 18px;letter-spacing:-.01em}
+.hero h1 span{display:inline-block}
+.hero h1 .a{color:var(--sun)} .hero h1 .b{color:#ff9478} .hero h1 .c{color:#7fd6ff}
+.hero p.lead{font-size:clamp(1.05rem,2.2vw,1.3rem);max-width:620px;opacity:.93}
+.cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+.stats{display:grid;grid-template-columns:repeat(4,auto);gap:10px 38px;justify-content:start;margin-top:44px}
+.stats div{font-weight:700;font-size:.92rem;opacity:.95}
+.stats strong{display:block;font-family:var(--display);font-size:2rem;line-height:1;color:var(--sun);font-variant-numeric:tabular-nums}
+@media (max-width:600px){.stats{grid-template-columns:repeat(2,auto)}}
+.leafs{position:absolute;inset:0;z-index:1;pointer-events:none}
+.leafs svg{position:absolute;opacity:.5}
+.leafs .l1{right:-60px;top:-40px;width:420px;animation:sway 7s ease-in-out infinite alternate;transform-origin:100% 0}
+.leafs .l2{left:-90px;top:120px;width:300px;transform:scaleX(-1) rotate(20deg);opacity:.28}
+@keyframes sway{to{transform:rotate(-5deg)}}
+#pit{position:absolute;left:0;bottom:0;width:100%;height:230px;z-index:2;display:block;touch-action:pan-y}
+.pit-hint{position:absolute;right:16px;bottom:12px;z-index:3;font-size:.8rem;font-weight:800;background:rgba(13,59,44,.7);padding:5px 12px;border-radius:999px;pointer-events:none}
+
+/* ---------- sections ---------- */
+section{padding:84px 0}
+.eyebrow{font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:.8rem;color:var(--leaf)}
+h2{font-size:clamp(2rem,4.6vw,3.1rem);font-weight:700;margin:8px 0 12px}
+.sub{color:var(--muted);max-width:640px;font-size:1.08rem}
+
+/* ---------- explorer ---------- */
+.explorer{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);gap:22px;margin-top:34px;align-items:stretch}
+@media (max-width:960px){.explorer{grid-template-columns:1fr}}
+.stage{background:#fff;border-radius:var(--radius);border:2px solid var(--line);overflow:hidden;position:relative}
+.stage-scroll{overflow-x:auto}
+.stage svg{display:block;width:100%;min-width:720px;height:auto}
+.scroll-hint{display:none;font-size:.8rem;font-weight:800;color:var(--muted);padding:8px 14px;border-top:2px solid var(--line)}
+@media (max-width:760px){.scroll-hint{display:block}}
+.zone{transition:opacity .3s,filter .3s}
+.stage.has-sel .zone{opacity:.6}
+.stage.has-sel .zone.sel{opacity:1;filter:drop-shadow(0 6px 10px rgba(0,0,0,.25))}
+.hot{cursor:pointer}
+.hot circle.ring{fill:none;stroke:#fff;stroke-width:3;opacity:.9;transform-box:fill-box;transform-origin:center;animation:pulse 2s ease-out infinite}
+.hot circle.core{fill:var(--coral);stroke:#fff;stroke-width:4;transition:r .15s}
+.hot text{fill:#fff;font-family:var(--display);font-weight:700;font-size:20px;text-anchor:middle;dominant-baseline:central;pointer-events:none}
+.hot.sel circle.core{fill:var(--grape)}
+.hot:hover circle.core{r:22}
+.hot:focus-visible{outline:none}
+.hot:focus-visible circle.core{stroke:var(--sun);stroke-width:6}
+@keyframes pulse{0%{transform:scale(1);opacity:.9}100%{transform:scale(2.1);opacity:0}}
+.panel{background:var(--deep);color:#fff;border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;min-height:380px}
+.panel .num{font-family:var(--display);font-weight:700;color:var(--sun);font-size:.95rem;letter-spacing:.08em}
+.panel h3{font-size:1.9rem;margin:6px 0 12px}
+.panel p{opacity:.92}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+.tags span{background:rgba(255,255,255,.13);border-radius:999px;padding:5px 13px;font-size:.85rem;font-weight:800}
+.meter{margin-top:auto}
+.meter label{display:flex;justify-content:space-between;font-size:.82rem;font-weight:800;opacity:.85;margin-bottom:6px}
+.bar{height:12px;border-radius:99px;background:rgba(255,255,255,.15);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--lime),var(--sun),var(--coral));transition:width .5s cubic-bezier(.2,.9,.3,1.2)}
+.pager{display:flex;gap:10px;margin-top:20px}
+.pager button{flex:1;border:0;border-radius:14px;padding:11px;background:rgba(255,255,255,.14);color:#fff;font-family:var(--display);font-weight:600}
+.pager button:hover{background:rgba(255,255,255,.24)}
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}
+.chips button{border:2px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;font-weight:800;font-size:.92rem;color:var(--ink)}
+.chips button[aria-pressed=true]{background:var(--grape);border-color:var(--grape);color:#fff}
+.note{font-size:.85rem;color:var(--muted);margin-top:14px}
+
+/* ---------- visit ---------- */
+.visit{background:#fdeec6}
+.grid2{display:grid;grid-template-columns:1.1fr 1fr;gap:22px;margin-top:34px}
+@media (max-width:900px){.grid2{grid-template-columns:1fr}}
+.card{background:var(--card);border-radius:var(--radius);padding:28px;border:2px solid var(--line)}
+.card h3{font-size:1.45rem;margin-bottom:14px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 0;border-top:2px dashed var(--line)}
+.row:first-of-type{border-top:0}
+.row b{font-weight:800}
+.row small{display:block;color:var(--muted);font-weight:600}
+.step{display:flex;align-items:center;gap:6px}
+.step button{width:40px;height:40px;border-radius:50%;border:0;background:var(--deep);color:#fff;font-size:1.3rem;font-weight:800;line-height:1}
+.step button:disabled{opacity:.3;cursor:default}
+.step output{min-width:34px;text-align:center;font-family:var(--display);font-size:1.4rem;font-weight:700;font-variant-numeric:tabular-nums}
+.seg{display:inline-flex;background:#f1e9d4;border-radius:999px;padding:4px}
+.seg button{border:0;background:none;border-radius:999px;padding:9px 16px;font-weight:800;color:var(--ink)}
+.seg button[aria-pressed=true]{background:var(--sun);box-shadow:0 2px 0 #d79f12}
+.total{background:var(--deep);color:#fff;border-radius:18px;padding:18px 22px;margin-top:16px}
+.total div{display:flex;justify-content:space-between;font-weight:700;opacity:.85;font-size:.95rem;font-variant-numeric:tabular-nums}
+.total .big{opacity:1;font-family:var(--display);font-size:1.9rem;margin-top:6px;align-items:baseline}
+.total .big span:last-child{color:var(--sun)}
+.hours{list-style:none;padding:0;margin:0}
+.hours li{display:flex;justify-content:space-between;padding:10px 14px;border-radius:12px;font-weight:700;font-variant-numeric:tabular-nums}
+.hours li.today{background:var(--deep);color:#fff}
+.hours li.today span:first-child::after{content:" · today";color:var(--sun);font-size:.85em}
+.hours li.shut span:last-child{color:var(--coral)}
+.addr{margin-top:18px;padding-top:18px;border-top:2px dashed var(--line);font-weight:700}
+.addr a{color:var(--leaf)}
+
+/* ---------- parties ---------- */
+.parties{background:linear-gradient(180deg,#7b5cff,#5a3fe0);color:#fff;position:relative;overflow:hidden}
+.parties .eyebrow{color:var(--sun)}
+.parties .sub{color:#e4dcff}
+.pk{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+@media (max-width:900px){.pk{grid-template-columns:1fr}}
+.pk button{text-align:left;background:#fff;color:var(--ink);border:4px solid transparent;border-radius:var(--radius);padding:24px;position:relative;transition:transform .2s}
+.pk button:hover{transform:translateY(-4px) rotate(-.6deg)}
+.pk button[aria-pressed=true]{border-color:var(--sun);box-shadow:0 10px 0 rgba(0,0,0,.18)}
+.pk button[aria-pressed=true]::after{content:"Selected";position:absolute;top:-14px;right:18px;background:var(--sun);color:#3a2a00;font-weight:800;font-size:.78rem;padding:4px 12px;border-radius:99px}
+.pk h3{font-size:1.5rem}
+.pk .price{font-family:var(--display);font-weight:700;font-size:2.1rem;color:var(--grape);margin:6px 0 10px}
+.pk .price small{font-size:.9rem;color:var(--muted);font-family:var(--body);font-weight:700}
+.pk ul{margin:0;padding-left:20px;color:#3d5249;font-weight:600;font-size:.96rem}
+.book{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;background:rgba(255,255,255,.12);border-radius:var(--radius);padding:22px 26px;margin-top:22px}
+@media (max-width:760px){.book{grid-template-columns:1fr}}
+.slots{display:flex;flex-wrap:wrap;gap:9px;margin-top:10px}
+.slots button{border:2px solid rgba(255,255,255,.5);background:none;color:#fff;border-radius:999px;padding:8px 16px;font-weight:800}
+.slots button[aria-pressed=true]{background:#fff;color:#4a32c8;border-color:#fff}
+.fine{font-size:.88rem;color:#e4dcff;margin-top:16px}
+.confetti{position:absolute;inset:0;pointer-events:none}
+.confetti i{position:absolute;width:12px;height:12px;border-radius:3px;opacity:.55;animation:float 9s linear infinite}
+@keyframes float{from{transform:translateY(-30px) rotate(0)}to{transform:translateY(900px) rotate(540deg)}}
+.parties .wrap{position:relative;z-index:1}
+
+/* ---------- loved ---------- */
+.loved{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:34px}
+@media (max-width:900px){.loved{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.loved{grid-template-columns:1fr}}
+.loved div{background:#fff;border:2px solid var(--line);border-radius:var(--radius);padding:22px}
+.loved svg{width:44px;height:44px;margin-bottom:10px}
+.loved h3{font-size:1.2rem;margin-bottom:6px}
+.loved p{color:var(--muted);font-size:.96rem}
+
+/* ---------- footer ---------- */
+footer{background:var(--deep);color:#fff;padding:60px 0 34px}
+.foot{display:grid;grid-template-columns:1.4fr 1fr;gap:30px;align-items:center}
+@media (max-width:760px){.foot{grid-template-columns:1fr}}
+footer h2{font-size:clamp(1.8rem,4vw,2.6rem)}
+footer .contact{font-weight:700;line-height:2}
+footer .contact a{color:var(--sun);text-decoration:none}
+.legal{margin-top:38px;padding-top:20px;border-top:1px solid rgba(255,255,255,.18);font-size:.82rem;opacity:.7}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top">
+      <i><b style="background:var(--sun)"></b><b style="background:var(--coral)"></b><b style="background:var(--sky)"></b></i>
+      Kidz Playland
+    </a>
+    <nav aria-label="Sections">
+      <a href="#explore">Explore</a>
+      <a href="#visit">Prices &amp; hours</a>
+      <a href="#parties">Parties</a>
+      <a href="#find">Find us</a>
+    </nav>
+    <a class="btn btn-sun" href="tel:+17057428874">Call (705) 742-8874</a>
+  </div>
+</header>
+
+<main id="top">
+<div class="hero">
+  <div class="leafs" aria-hidden="true">
+    <svg class="l1" viewBox="0 0 400 300"><g fill="#8fd14f"><path d="M400 0C300 10 190 60 150 190c70-50 150-80 250-90z"/><path d="M400 0C330 60 300 140 320 260c30-80 60-130 80-160z" fill="#5fb85a"/><path d="M400 0C280-10 120 0 20 90c110-30 240-40 380-20z" fill="#3f9d57"/></g></svg>
+    <svg class="l2" viewBox="0 0 400 300"><g fill="#8fd14f"><path d="M400 0C300 10 190 60 150 190c70-50 150-80 250-90z"/><path d="M400 0C280-10 120 0 20 90c110-30 240-40 380-20z" fill="#3f9d57"/></g></svg>
+  </div>
+  <div class="wrap">
+    <span class="pill" id="status"><span class="dot"></span><span>Indoor playground · Peterborough, ON</span></span>
+    <h1><span class="a">Climb it.</span> <span class="b">Slide it.</span> <span class="c">Bounce it.</span></h1>
+    <p class="lead">5,000 square feet of slides, obstacles, trampolines, ball pits and ball machines, all indoors at 660 The Kingsway. Rain, snow or a long weekend: the playground is always dry.</p>
+    <div class="cta">
+      <a class="btn btn-sun" href="#explore">Explore the playground</a>
+      <a class="btn btn-ghost" href="#parties">Plan a birthday</a>
+    </div>
+    <div class="stats">
+      <div><strong data-count="5000">5,000</strong>sq ft of play</div>
+      <div><strong data-count="3">3</strong>storeys to climb</div>
+      <div><strong data-count="6">6</strong>slides</div>
+      <div><strong data-count="2">2</strong>party rooms</div>
+    </div>
+  </div>
+  <canvas id="pit" aria-hidden="true"></canvas>
+  <span class="pit-hint" id="pitHint">Swipe through the ball pit · tap to drop more</span>
+</div>
+
+<!-- ============ EXPLORE ============ -->
+<section id="explore">
+  <div class="wrap">
+    <p class="eyebrow">Take a look inside</p>
+    <h2>One big room, eight ways to play</h2>
+    <p class="sub">Tap a number to see what's waiting in each corner of the playground.</p>
+
+    <div class="explorer reveal">
+      <div class="stage" id="stage">
+        <div class="stage-scroll">
+        <svg viewBox="0 0 1100 620" role="group" aria-label="Illustrated cutaway of the playground with eight numbered play areas">
+          <defs>
+            <pattern id="net" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0H14M0 0V14" stroke="#0d3b2c" stroke-width="1.2" opacity=".28"/></pattern>
+            <pattern id="tiles" width="60" height="30" patternUnits="userSpaceOnUse"><rect width="60" height="30" fill="#f6dfae"/><rect width="30" height="30" fill="#f1d597"/></pattern>
+            <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cdeeff"/><stop offset="1" stop-color="#e6f7ea"/></linearGradient>
+          </defs>
+          <!-- room -->
+          <rect width="1100" height="520" fill="url(#wall)"/>
+          <g opacity=".5" fill="#7cc98a">
+            <path d="M0 520C20 430 70 380 120 370c-40 50-50 100-45 150z"/><path d="M40 520C80 400 150 370 200 380c-60 40-90 90-95 140z" fill="#5db374"/>
+            <path d="M1100 520c-20-90-70-140-120-150 40 50 50 100 45 150z"/><path d="M700 520c10-60 40-90 70-95-20 30-25 60-22 95z" fill="#5db374"/>
+          </g>
+          <g fill="#fff" opacity=".7"><ellipse cx="760" cy="80" rx="70" ry="22"/><ellipse cx="820" cy="66" rx="50" ry="20"/><ellipse cx="230" cy="60" rx="60" ry="18"/></g>
+          <rect y="520" width="1100" height="100" fill="url(#tiles)"/>
+          <rect y="516" width="1100" height="8" fill="#e2c27c"/>
+
+          <!-- 7 party rooms -->
+          <g class="zone" data-zone="6">
+            <rect x="900" y="250" width="184" height="270" rx="10" fill="#ffe3ef" stroke="#ff8fb8" stroke-width="5"/>
+            <rect x="914" y="330" width="74" height="190" rx="6" fill="#ff8fb8"/><rect x="996" y="330" width="74" height="190" rx="6" fill="#b89bff"/>
+            <circle cx="976" cy="430" r="5" fill="#fff"/><circle cx="1008" cy="430" r="5" fill="#fff"/>
+            <rect x="926" y="346" width="50" height="60" rx="6" fill="#fff" opacity=".65"/><rect x="1008" y="346" width="50" height="60" rx="6" fill="#fff" opacity=".65"/>
+            <path d="M906 270q30 34 60 0q30 34 60 0q30 34 52 0" fill="none" stroke="#17322a" stroke-width="2"/>
+            <g><path d="M920 280l14 0-7 20z" fill="#ffc83a"/><path d="M950 288l14 0-7 20z" fill="#35b1e6"/><path d="M982 280l14 0-7 20z" fill="#ff6a48"/><path d="M1012 288l14 0-7 20z" fill="#8fd14f"/><path d="M1042 280l14 0-7 20z" fill="#7b5cff"/></g>
+            <g><path d="M890 250V180" stroke="#17322a" stroke-width="1.5"/><ellipse cx="890" cy="160" rx="18" ry="23" fill="#ff6a48"/><path d="M905 250V200" stroke="#17322a" stroke-width="1.5"/><ellipse cx="908" cy="182" rx="16" ry="21" fill="#ffc83a"/></g>
+          </g>
+
+          <!-- 1 structure frame -->
+          <g class="zone" data-zone="0">
+            <rect x="170" y="150" width="450" height="370" fill="url(#net)"/>
+            <path d="M160 150H630L600 110H190z" fill="#ff6a48"/>
+            <path d="M190 110h410" stroke="#cf4426" stroke-width="5"/>
+            <g stroke-width="14" stroke-linecap="round">
+              <path d="M170 150V520" stroke="#7b5cff"/><path d="M320 150V520" stroke="#35b1e6"/><path d="M470 150V520" stroke="#ffc83a"/><path d="M620 150V520" stroke="#7b5cff"/>
+            </g>
+            <g stroke="#1c7a4c" stroke-width="12" stroke-linecap="round"><path d="M170 150H620"/><path d="M170 275H620"/><path d="M170 400H620"/></g>
+            <g fill="#17322a" font-family="Fredoka, sans-serif" font-weight="700" font-size="15" opacity=".55"><text x="182" y="176">LEVEL 3</text><text x="182" y="301">LEVEL 2</text><text x="182" y="426">LEVEL 1</text></g>
+          </g>
+
+          <!-- 3 obstacles & tunnels -->
+          <g class="zone" data-zone="2">
+            <rect x="335" y="215" width="270" height="52" rx="26" fill="#35b1e6"/>
+            <g fill="#cdeeff"><circle cx="385" cy="241" r="14"/><circle cx="445" cy="241" r="14"/><circle cx="505" cy="241" r="14"/><circle cx="565" cy="241" r="14"/></g>
+            <g><path d="M350 281v34M392 281v34M434 281v34" stroke="#17322a" stroke-width="3"/>
+              <rect x="336" y="312" width="28" height="70" rx="14" fill="#ff6a48"/><rect x="378" y="312" width="28" height="70" rx="14" fill="#ffc83a"/><rect x="420" y="312" width="28" height="70" rx="14" fill="#8fd14f"/></g>
+            <path d="M478 372q65 30 134 0" fill="none" stroke="#8a5a2b" stroke-width="6"/>
+            <path d="M478 340q65 30 134 0" fill="none" stroke="#8a5a2b" stroke-width="3"/>
+            <g stroke="#8a5a2b" stroke-width="3"><path d="M500 349v31M523 353v33M546 354v34M569 353v33M592 349v31"/></g>
+            <g><rect x="190" y="330" width="110" height="18" rx="9" fill="#7b5cff"/><rect x="190" y="362" width="110" height="18" rx="9" fill="#ff8fb8"/><circle cx="210" cy="339" r="13" fill="#b89bff"/><circle cx="280" cy="371" r="13" fill="#ffc0d8"/></g>
+          </g>
+
+          <!-- 2 slides -->
+          <g class="zone" data-zone="1" fill="none" stroke-linecap="round">
+            <path d="M176 240C110 240 96 300 96 360S60 480 34 512" stroke="#cf4426" stroke-width="46"/>
+            <path d="M176 240C110 240 96 300 96 360S60 480 34 512" stroke="#ff6a48" stroke-width="36"/>
+            <path d="M176 232C116 232 104 296 104 356" stroke="#ffb09c" stroke-width="5"/>
+            <path d="M620 392q30 4 46 46t44 40q22-2 34 34" stroke="#d79f12" stroke-width="30"/>
+            <path d="M620 392q30 4 46 46t44 40q22-2 34 34" stroke="#ffc83a" stroke-width="22"/>
+            <path d="M620 268q70 10 96 110t60 134" stroke="#2a8fbe" stroke-width="20"/>
+            <path d="M620 268q70 10 96 110t60 134" stroke="#35b1e6" stroke-width="13"/>
+          </g>
+
+          <!-- 4 ball pit & machines -->
+          <g class="zone" data-zone="3">
+            <path d="M180 470H330V520H180z" fill="#fff" opacity=".5"/>
+            <g id="svgBalls"></g>
+            <rect x="176" y="462" width="160" height="12" rx="6" fill="#35b1e6"/>
+            <g><rect x="352" y="462" width="46" height="58" rx="10" fill="#7b5cff"/><rect x="362" y="430" width="60" height="26" rx="13" fill="#b89bff" transform="rotate(-28 362 443)"/>
+              <circle cx="375" cy="492" r="9" fill="#ffc83a"/>
+              <g class="shots"><circle cx="418" cy="412" r="8" fill="#ff6a48"/><circle cx="440" cy="424" r="8" fill="#8fd14f"/><circle cx="452" cy="446" r="8" fill="#35b1e6"/></g></g>
+          </g>
+
+          <!-- 6 toddlers -->
+          <g class="zone" data-zone="5">
+            <rect x="484" y="480" width="40" height="40" rx="8" fill="#ff8fb8"/><rect x="528" y="480" width="40" height="40" rx="8" fill="#8fd14f"/><rect x="506" y="440" width="40" height="40" rx="8" fill="#ffc83a"/>
+            <path d="M572 520V486a22 22 0 0 1 44 0v34z" fill="#35b1e6"/><path d="M584 520v-30a10 10 0 0 1 20 0v30z" fill="#e6f7ea"/>
+            <text x="526" y="468" font-family="Fredoka, sans-serif" font-weight="700" font-size="22" text-anchor="middle" fill="#17322a">A</text>
+            <text x="504" y="508" font-family="Fredoka, sans-serif" font-weight="700" font-size="22" text-anchor="middle" fill="#fff">B</text>
+            <text x="548" y="508" font-family="Fredoka, sans-serif" font-weight="700" font-size="22" text-anchor="middle" fill="#fff">C</text>
+          </g>
+
+          <!-- 5 trampolines -->
+          <g class="zone" data-zone="4">
+            <rect x="770" y="380" width="120" height="140" fill="url(#net)"/>
+            <path d="M770 380V520M890 380V520M770 380H890" stroke="#1c7a4c" stroke-width="8" stroke-linecap="round" fill="none"/>
+            <ellipse cx="830" cy="505" rx="54" ry="13" fill="#17322a"/><ellipse cx="830" cy="505" rx="54" ry="13" fill="none" stroke="#35b1e6" stroke-width="7"/>
+            <g class="bouncer"><circle cx="830" cy="440" r="15" fill="#ffc83a"/><path d="M816 458q14 34 28 0l-4 36h-20z" fill="#ff6a48"/></g>
+          </g>
+
+          <!-- 8 seating -->
+          <g class="zone" data-zone="7">
+            <ellipse cx="560" cy="566" rx="50" ry="13" fill="#8a5a2b"/><rect x="554" y="566" width="12" height="34" fill="#6d451f"/>
+            <rect x="482" y="566" width="26" height="34" rx="8" fill="#1c7a4c"/><rect x="612" y="566" width="26" height="34" rx="8" fill="#1c7a4c"/>
+            <path d="M548 548h18v12a9 9 0 0 1-18 0z" fill="#fff"/><path d="M566 551h5a4 4 0 0 1 0 8h-5" fill="none" stroke="#fff" stroke-width="2.5"/>
+            <path d="M553 544q-3-6 2-10M560 544q-3-6 2-10" fill="none" stroke="#17322a" stroke-width="1.6" opacity=".5"/>
+            <ellipse cx="700" cy="572" rx="40" ry="11" fill="#8a5a2b"/><rect x="695" y="572" width="10" height="30" fill="#6d451f"/>
+          </g>
+
+          <!-- hotspots -->
+          <g id="hots"></g>
+        </svg>
+        </div>
+        <div class="scroll-hint">← Drag sideways to see the whole room →</div>
+      </div>
+
+      <aside class="panel" aria-live="polite">
+        <span class="num" id="zNum"></span>
+        <h3 id="zTitle"></h3>
+        <p id="zText"></p>
+        <div class="tags" id="zTags"></div>
+        <div class="meter">
+          <label><span>Energy burned</span><span id="zLvl"></span></label>
+          <div class="bar"><i id="zBar" style="width:0"></i></div>
+        </div>
+        <div class="pager"><button id="prev" type="button">← Previous</button><button id="next" type="button">Next →</button></div>
+      </aside>
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Play areas"></div>
+    <p class="note">Illustrated guide to what's inside, not an exact floor plan.</p>
+  </div>
+</section>
+
+<!-- ============ VISIT ============ -->
+<section id="visit" class="visit">
+  <div class="wrap">
+    <p class="eyebrow">Drop-in play</p>
+    <h2>Simple pricing. Grown-ups play free.</h2>
+    <p class="sub">Pay by the hour per child. Up to two adults per group come in free.</p>
+
+    <div class="grid2">
+      <div class="card reveal">
+        <h3>Work out your visit</h3>
+        <div class="row">
+          <div><b>Kids</b><small>Toddlers and up</small></div>
+          <div class="step"><button type="button" data-step="kids" data-d="-1" aria-label="Fewer kids">−</button><output id="kids">2</output><button type="button" data-step="kids" data-d="1" aria-label="More kids">+</button></div>
+        </div>
+        <div class="row">
+          <div><b>Play time</b><small id="rateNote"></small></div>
+          <div class="seg" id="dur"><button type="button" data-h="1" aria-pressed="false">1 hour</button><button type="button" data-h="2" aria-pressed="true">2 hours</button></div>
+        </div>
+        <div class="row">
+          <div><b>Adults</b><small>First 2 free, then $5 each</small></div>
+          <div class="step"><button type="button" data-step="adults" data-d="-1" aria-label="Fewer adults">−</button><output id="adults">2</output><button type="button" data-step="adults" data-d="1" aria-label="More adults">+</button></div>
+        </div>
+        <div class="total">
+          <div><span id="lineKids"></span><span id="amtKids"></span></div>
+          <div><span id="lineAdults"></span><span id="amtAdults"></span></div>
+          <div><span>Estimated HST (13%)</span><span id="amtTax"></span></div>
+          <div class="big"><span>About</span><span id="amtTotal"></span></div>
+        </div>
+        <p class="note">An estimate based on posted rates of $11.99/hour and $21.99 for two hours, plus tax. Pay at the door.</p>
+      </div>
+
+      <div class="card reveal" id="find">
+        <h3>Opening hours</h3>
+        <ul class="hours" id="hours"></ul>
+        <p class="note">Hours change on holidays and P.A. days. Call ahead on busy weekends.</p>
+        <div class="addr">
+          660 The Kingsway, Peterborough, ON K9J 7C8<br>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Kidz+Playland+660+The+Kingsway+Peterborough+ON" target="_blank" rel="noopener">Get directions →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PARTIES ============ -->
+<section id="parties" class="parties">
+  <div class="confetti" id="confetti" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="eyebrow">Birthday parties</p>
+    <h2>Two party rooms. Zero clean-up.</h2>
+    <p class="sub">A two-hour slot with play, pizza, drinks and a private room for cake. Bring a nut-free cake; the team handles the rest.</p>
+
+    <div class="pk reveal" id="pk"></div>
+
+    <div class="book reveal">
+      <div>
+        <b>Pick a time slot</b>
+        <div class="slots" id="slots"></div>
+      </div>
+      <a class="btn btn-sun" id="bookBtn" href="#">Ask about this party</a>
+    </div>
+    <p class="fine">A $100 non-refundable deposit holds your date. Larger catered parties (pizza, sandwiches, veggie and fruit trays) are priced on request.</p>
+  </div>
+</section>
+
+<!-- ============ LOVED ============ -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Why families come back</p>
+    <h2>Rated 4.7 out of 5 by local parents</h2>
+    <p class="sub">Open in Peterborough for more than eight years. Here is what comes up again and again in reviews.</p>
+    <div class="loved reveal">
+      <div><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#d9f3ff"/><path d="M14 30l4-14 12 4-6 6z" fill="#35b1e6"/><path d="M29 11v6M26 14h6M33 22v4M31 24h4" stroke="#35b1e6" stroke-width="2.4" stroke-linecap="round"/></svg><h3>Spotless</h3><p>Parents regularly call out how clean the play areas and washrooms are.</p></div>
+      <div><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#ffe8e2"/><path d="M22 33s-10-6-10-13a5.500 5.500 0 0 1 10-3 5.500 5.500 0 0 1 10 3c0 7-10 13-10 13z" fill="#ff6a48"/></svg><h3>Friendly staff</h3><p>A helpful team that sets up parties and keeps the day running.</p></div>
+      <div><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#e9f7dc"/><rect x="11" y="23" width="10" height="10" rx="2" fill="#8fd14f"/><rect x="23" y="23" width="10" height="10" rx="2" fill="#1c7a4c"/><rect x="17" y="12" width="10" height="10" rx="2" fill="#ffc83a"/></svg><h3>Toddler friendly</h3><p>Soft toys and low climbs for little ones, with plenty for older kids too.</p></div>
+      <div><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#ece6ff"/><path d="M12 30l3-12h14l3 12z" fill="#7b5cff"/><path d="M22 18v-5" stroke="#7b5cff" stroke-width="2.4"/><circle cx="22" cy="11" r="2.500" fill="#ffc83a"/></svg><h3>Easy parties</h3><p>Decorations, set-up and clean-up handled so you can enjoy the day.</p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <h2>Ready to play?</h2>
+        <p style="opacity:.85;margin:10px 0 22px;max-width:480px">Walk in for an hour or two, or call to book a party room.</p>
+        <div class="cta" style="margin:0">
+          <a class="btn btn-sun" href="tel:+17057428874">Call (705) 742-8874</a>
+          <a class="btn btn-ghost" href="mailto:info@kidzplayland.ca">Email us</a>
+        </div>
+      </div>
+      <div class="contact">
+        660 The Kingsway, Peterborough, ON K9J 7C8<br>
+        <a href="tel:+17057428874">(705) 742-8874</a><br>
+        <a href="mailto:info@kidzplayland.ca">info@kidzplayland.ca</a><br>
+        <a href="https://www.kidzplayland.ca" target="_blank" rel="noopener">kidzplayland.ca</a>
+      </div>
+    </div>
+    <p class="legal">Concept landing page. Prices, hours and details were gathered from public listings in November 2026 and should be confirmed with Kidz Playland before publishing.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var $=function(s){return document.querySelector(s)};
+var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+var COLORS=["#ffc83a","#ff6a48","#35b1e6","#8fd14f","#7b5cff","#ff8fb8"];
+var NS="http://www.w3.org/2000/svg";
+
+/* ---------- business data (edit here) ---------- */
+var HOURS=[ /* Sun..Sat, 24h [open, close] or null */
+  [10,18],null,[10,17],[10,17],[10,17],[10,18],[10,18]
+];
+var DAYS=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+var RATE={1:11.99,2:21.99}, EXTRA_ADULT=5, FREE_ADULTS=2, HST=0.13;
+var ZONES=[
+ {t:"The three-storey climber",x:395,y:128,e:85,
+  d:"The centrepiece: a padded, netted play structure that goes up three full levels. Kids pick a route up, wave from the top and find a new way down every time.",
+  tags:["3 levels","Padded and netted","Socks on"]},
+ {t:"Six slides",x:92,y:372,e:70,
+  d:"Six different slides run off the structure, from gentle ones near the bottom to the long ride from the top level. The line moves fast, so it is straight back up for another go.",
+  tags:["6 slides","From every level","Repeat riders"]},
+ {t:"Obstacles and tunnels",x:465,y:312,e:90,
+  d:"Push through hanging bags, squeeze past rollers, cross the bridge and crawl through tunnels. It is a full obstacle course hidden inside the climber.",
+  tags:["Crawl","Balance","Squeeze"]},
+ {t:"Ball pit and ball machines",x:258,y:440,e:60,
+  d:"Dive into the ball pit, then load up the ball machines and send foam balls flying. A favourite for kids who would rather aim than climb.",
+  tags:["Ball pit","Ball machines","Team play"]},
+ {t:"Trampolines",x:830,y:356,e:100,
+  d:"Netted trampolines for getting the last of the wiggles out. A few minutes here and the car ride home gets very quiet.",
+  tags:["Netted","Big bounces","Take turns"]},
+ {t:"Little ones",x:548,y:428,e:35,
+  d:"Soft blocks, toddler-friendly toys and low climbs, so the smallest visitors have a spot at their own speed while older siblings race around.",
+  tags:["Toddlers","Soft play","Stay close"]},
+ {t:"Party rooms",x:992,y:226,e:50,
+  d:"Two private rooms for pizza, cake and presents. Book one with a party package and the team looks after set-up and clean-up.",
+  tags:["2 rooms","Private","Pizza included"]},
+ {t:"Grown-up seating",x:630,y:548,e:5,
+  d:"Tables with a view of the play floor. Up to two adults per group come in free, so grab a seat and keep an eye on the action.",
+  tags:["Adults free","Line of sight","Sit down"]}
+];
+var PACKS=[
+ {n:"Party for 10",p:"$325",k:"Up to 10 kids",i:["1 XL pizza","10 juice boxes and 10 waters","Cutlery set and clean-up","Private party room"]},
+ {n:"Party for 15",p:"Call",k:"Up to 15 kids",i:["2 XL pizzas","15 juice boxes","Cutlery set and clean-up","Private party room"]},
+ {n:"Party for 20",p:"$550",k:"Up to 20 kids",i:["Room for the whole class","Food and drinks scaled up for 20","Cutlery set and clean-up","Private party room"]}
+];
+var SLOTS=["10 am to 12 pm","1 pm to 3 pm","4 pm to 6 pm"];
+
+/* ---------- open-now status (Peterborough time) ---------- */
+function fmt(h){var s=h>=12?"PM":"AM";var x=h%12||12;return x+" "+s}
+(function(){
+  var now;
+  try{
+    var p=new Intl.DateTimeFormat("en-CA",{timeZone:"America/Toronto",weekday:"long",hour:"numeric",minute:"numeric",hour12:false}).formatToParts(new Date());
+    var o={};p.forEach(function(x){o[x.type]=x.value});
+    now={d:DAYS.indexOf(o.weekday),h:(+o.hour%24)+(+o.minute)/60};
+  }catch(e){var t=new Date();now={d:t.getDay(),h:t.getHours()+t.getMinutes()/60}}
+  var ul=$("#hours");
+  [2,3,4,5,6,0,1].forEach(function(i){
+    var li=document.createElement("li"),h=HOURS[i];
+    li.innerHTML="<span>"+DAYS[i]+"</span><span>"+(h?fmt(h[0])+" to "+fmt(h[1]):"Closed")+"</span>";
+    if(!h)li.className="shut";
+    if(i===now.d)li.classList.add("today");
+    ul.appendChild(li);
+  });
+  var h=HOURS[now.d],dot=$("#status .dot"),txt=$("#status span:last-child");
+  if(h&&now.h>=h[0]&&now.h<h[1]){dot.classList.add("open");txt.textContent="Open now · until "+fmt(h[1])}
+  else{
+    dot.classList.add("closed");
+    if(h&&now.h<h[0]){txt.textContent="Opens today at "+fmt(h[0])}
+    else{for(var k=1;k<=7;k++){var n=(now.d+k)%7;if(HOURS[n]){txt.textContent="Closed now · opens "+(k===1?"tomorrow":DAYS[n])+" at "+fmt(HOURS[n][0]);break}}}
+  }
+})();
+
+/* ---------- explorer ---------- */
+(function(){
+  var stage=$("#stage"),hots=$("#hots"),chips=$("#chips"),cur=-1;
+  var art=document.querySelectorAll(".zone");
+  // decorative balls in the illustrated pit
+  var g=$("#svgBalls");
+  for(var i=0;i<34;i++){var c=document.createElementNS(NS,"circle");
+    c.setAttribute("cx",190+(i*37%135));c.setAttribute("cy",480+(i*53%32));c.setAttribute("r",9);
+    c.setAttribute("fill",COLORS[i%COLORS.length]);g.appendChild(c)}
+  ZONES.forEach(function(z,i){
+    var h=document.createElementNS(NS,"g");h.setAttribute("class","hot");h.setAttribute("tabindex","0");
+    h.setAttribute("role","button");h.setAttribute("aria-label",(i+1)+". "+z.t);
+    h.innerHTML='<circle class="ring" cx="'+z.x+'" cy="'+z.y+'" r="19" style="animation-delay:'+(i*.22)+'s"/><circle class="core" cx="'+z.x+'" cy="'+z.y+'" r="19"/><text x="'+z.x+'" y="'+(z.y+1)+'">'+(i+1)+'</text>';
+    h.addEventListener("click",function(){pick(i)});
+    h.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();pick(i)}});
+    hots.appendChild(h);
+    var b=document.createElement("button");b.type="button";b.textContent=(i+1)+". "+z.t;
+    b.addEventListener("click",function(){pick(i,true)});chips.appendChild(b);
+  });
+  function pick(i,scroll){
+    cur=(i+ZONES.length)%ZONES.length;var z=ZONES[cur];
+    stage.classList.add("has-sel");
+    art.forEach(function(a){a.classList.toggle("sel",+a.dataset.zone===cur)});
+    [].forEach.call(hots.children,function(h,k){h.classList.toggle("sel",k===cur)});
+    [].forEach.call(chips.children,function(b,k){b.setAttribute("aria-pressed",k===cur)});
+    $("#zNum").textContent="AREA "+(cur+1)+" OF "+ZONES.length;
+    $("#zTitle").textContent=z.t;$("#zText").textContent=z.d;
+    $("#zTags").innerHTML=z.tags.map(function(t){return "<span>"+t+"</span>"}).join("");
+    $("#zBar").style.width=Math.max(z.e,4)+"%";
+    $("#zLvl").textContent=z.e>=85?"Loads":z.e>=55?"Plenty":z.e>=25?"Gentle":"None (enjoy it)";
+    if(scroll){var sc=stage.querySelector(".stage-scroll");
+      if(sc.scrollWidth>sc.clientWidth){sc.scrollTo({left:z.x/1100*sc.scrollWidth-sc.clientWidth/2,behavior:reduce?"auto":"smooth"})}}
+  }
+  $("#prev").onclick=function(){pick(cur-1,true)};
+  $("#next").onclick=function(){pick(cur+1,true)};
+  pick(0);
+})();
+
+/* ---------- price calculator ---------- */
+(function(){
+  var s={kids:2,adults:2,h:2},lim={kids:[1,12],adults:[1,8]};
+  function money(n){return "$"+n.toFixed(2)}
+  function draw(){
+    $("#kids").textContent=s.kids;$("#adults").textContent=s.adults;
+    document.querySelectorAll("[data-step]").forEach(function(b){
+      var k=b.dataset.step,v=s[k]+ +b.dataset.d;b.disabled=v<lim[k][0]||v>lim[k][1]});
+    document.querySelectorAll("#dur button").forEach(function(b){b.setAttribute("aria-pressed",+b.dataset.h===s.h)});
+    $("#rateNote").textContent=money(RATE[s.h])+" per child";
+    var kids=s.kids*RATE[s.h],extra=Math.max(0,s.adults-FREE_ADULTS),ad=extra*EXTRA_ADULT,tax=(kids+ad)*HST;
+    $("#lineKids").textContent=s.kids+(s.kids>1?" kids":" kid")+" × "+s.h+(s.h>1?" hours":" hour");
+    $("#amtKids").textContent=money(kids);
+    $("#lineAdults").textContent=s.adults+(s.adults>1?" adults":" adult")+(extra?" ("+extra+" extra)":" (free)");
+    $("#amtAdults").textContent=money(ad);
+    $("#amtTax").textContent=money(tax);$("#amtTotal").textContent=money(kids+ad+tax);
+  }
+  document.querySelectorAll("[data-step]").forEach(function(b){b.onclick=function(){s[b.dataset.step]+= +b.dataset.d;draw()}});
+  document.querySelectorAll("#dur button").forEach(function(b){b.onclick=function(){s.h=+b.dataset.h;draw()}});
+  draw();
+})();
+
+/* ---------- parties ---------- */
+(function(){
+  var pk=$("#pk"),sl=$("#slots"),sp=1,ss=1;
+  PACKS.forEach(function(p,i){
+    var b=document.createElement("button");b.type="button";
+    b.innerHTML="<h3>"+p.n+"</h3><div class='price'>"+p.p+" <small>"+(p.p==="Call"?"for current price":"+ tax")+" · "+p.k+"</small></div><ul>"+p.i.map(function(x){return "<li>"+x+"</li>"}).join("")+"</ul>";
+    b.onclick=function(){sp=i;draw()};pk.appendChild(b)});
+  SLOTS.forEach(function(t,i){var b=document.createElement("button");b.type="button";b.textContent=t;b.onclick=function(){ss=i;draw()};sl.appendChild(b)});
+  function draw(){
+    [].forEach.call(pk.children,function(b,i){b.setAttribute("aria-pressed",i===sp)});
+    [].forEach.call(sl.children,function(b,i){b.setAttribute("aria-pressed",i===ss)});
+    var subj="Birthday party enquiry: "+PACKS[sp].n+", "+SLOTS[ss];
+    var body="Hi Kidz Playland,\n\nI'd like to book the "+PACKS[sp].n+" package ("+PACKS[sp].k.toLowerCase()+") in the "+SLOTS[ss]+" slot.\n\nPreferred date: \nChild's name and age: \nPhone: \n\nThanks!";
+    $("#bookBtn").href="mailto:info@kidzplayland.ca?subject="+encodeURIComponent(subj)+"&body="+encodeURIComponent(body);
+    $("#bookBtn").textContent="Ask about "+PACKS[sp].n.toLowerCase()+", "+SLOTS[ss].split(" to ")[0];
+  }
+  draw();
+  var cf=$("#confetti");
+  for(var i=0;i<26;i++){var e=document.createElement("i");
+    e.style.left=(i*41%100)+"%";e.style.top=-(i*17%60)+"px";e.style.background=COLORS[i%COLORS.length];
+    e.style.animationDelay=-(i*.7)+"s";e.style.animationDuration=(7+i%5)+"s";if(i%3===0)e.style.borderRadius="50%";cf.appendChild(e)}
+})();
+
+/* ---------- reveal + counters ---------- */
+(function(){
+  var els=document.querySelectorAll(".reveal");
+  if(!("IntersectionObserver" in window)||reduce){els.forEach(function(e){e.classList.add("in")});return}
+  var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.12});
+  els.forEach(function(e){io.observe(e)});
+  document.querySelectorAll("[data-count]").forEach(function(el){
+    var end=+el.dataset.count,t0=performance.now();
+    (function tick(t){var p=Math.min(1,(t-t0)/1100),v=Math.round(end*(1-Math.pow(1-p,3)));
+      el.textContent=v.toLocaleString("en-CA");if(p<1)requestAnimationFrame(tick)})(t0);
+  });
+})();
+
+/* ---------- hero ball pit ---------- */
+(function(){
+  var cv=$("#pit"),cx=cv.getContext("2d"),W,H,dpr,balls=[],ptr={x:-999,y:-999,on:false},run=false,raf;
+  function size(){dpr=Math.min(2,devicePixelRatio||1);W=cv.clientWidth;H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0)}
+  function add(x,y){var r=W<600?13+Math.random()*7:17+Math.random()*10;
+    balls.push({x:x,y:y,vx:(Math.random()-.5)*3,vy:0,r:r,c:COLORS[balls.length%COLORS.length]})}
+  function fill(){balls=[];var n=Math.min(120,Math.round(W/11));for(var i=0;i<n;i++)add(Math.random()*W,-Math.random()*400)}
+  function step(){
+    for(var i=0;i<balls.length;i++){var b=balls[i];
+      b.vy+=.42;b.vx*=.992;b.vy*=.992;
+      if(ptr.on){var dx=b.x-ptr.x,dy=b.y-ptr.y,d=Math.sqrt(dx*dx+dy*dy)||1,R=b.r+46;
+        if(d<R){var f=(R-d)/R*2.2;b.vx+=dx/d*f;b.vy+=dy/d*f-.3}}
+      b.x+=b.vx;b.y+=b.vy;
+      if(b.x<b.r){b.x=b.r;b.vx*=-.5}if(b.x>W-b.r){b.x=W-b.r;b.vx*=-.5}
+      if(b.y>H-b.r){b.y=H-b.r;b.vy*=-.35;b.vx*=.96}
+    }
+    for(var k=0;k<3;k++)for(i=0;i<balls.length;i++)for(var j=i+1;j<balls.length;j++){
+      var a=balls[i],c=balls[j],ddx=c.x-a.x,ddy=c.y-a.y,m=a.r+c.r;
+      if(Math.abs(ddx)>m||Math.abs(ddy)>m)continue;
+      var dd=Math.sqrt(ddx*ddx+ddy*ddy)||.01;if(dd>=m)continue;
+      var nx=ddx/dd,ny=ddy/dd,o=(m-dd)/2;a.x-=nx*o;a.y-=ny*o;c.x+=nx*o;c.y+=ny*o;
+      var rv=(c.vx-a.vx)*nx+(c.vy-a.vy)*ny;if(rv<0){var imp=rv*.6;a.vx+=nx*imp;a.vy+=ny*imp;c.vx-=nx*imp;c.vy-=ny*imp}
+      if(a.y>H-a.r)a.y=H-a.r;if(c.y>H-c.r)c.y=H-c.r;
+    }
+  }
+  function draw(){
+    cx.clearRect(0,0,W,H);
+    for(var i=0;i<balls.length;i++){var b=balls[i];
+      cx.beginPath();cx.arc(b.x,b.y,b.r,0,6.2832);cx.fillStyle=b.c;cx.fill();
+      cx.beginPath();cx.arc(b.x-b.r*.3,b.y-b.r*.35,b.r*.28,0,6.2832);cx.fillStyle="rgba(255,255,255,.45)";cx.fill()}
+  }
+  function loop(){step();draw();if(run)raf=requestAnimationFrame(loop)}
+  function pos(e){var r=cv.getBoundingClientRect();ptr.x=e.clientX-r.left;ptr.y=e.clientY-r.top}
+  cv.addEventListener("pointermove",function(e){pos(e);ptr.on=true});
+  cv.addEventListener("pointerleave",function(){ptr.on=false});
+  cv.addEventListener("pointerdown",function(e){pos(e);ptr.on=true;
+    for(var i=0;i<5;i++)add(ptr.x+(Math.random()-.5)*50,-20-i*24);
+    if(balls.length>170)balls.splice(0,balls.length-170);
+    if(reduce){for(var k=0;k<400;k++)step();draw()}});
+  addEventListener("resize",function(){var w=W;size();if(Math.abs(w-W)>60)fill();if(reduce){for(var k=0;k<500;k++)step();draw()}});
+  size();fill();
+  if(reduce){for(var k=0;k<600;k++)step();draw();$("#pitHint").textContent="Tap to drop more balls";return}
+  new IntersectionObserver(function(en){var v=en[0].isIntersecting;
+    if(v&&!run){run=true;loop()}else if(!v){run=false;cancelAnimationFrame(raf)}}).observe(cv);
+})();
+})();
+</script>
+</body>
+</html>
