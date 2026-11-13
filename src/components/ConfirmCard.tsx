@@ -81,26 +81,24 @@ export function ConfirmCard({
                 )}
               </div>
 
-              <div className="mt-2 flex items-baseline gap-3">
-                <input
-                  aria-label="Title"
-                  className={`${editable} flex-1 font-semibold ${large ? "text-3xl" : "text-xl"}`}
-                  value={d.title}
-                  onChange={(e) => set(d.id, { title: e.target.value })}
-                />
-                {d.type === "expense" && (
-                  <label className="flex shrink-0 items-baseline gap-1">
-                    <span className="text-sm font-medium text-muted">{d.currency}</span>
-                    <input
-                      aria-label="Amount" type="number" inputMode="decimal" min="0" step="0.01" placeholder="0.00"
-                      autoFocus={d.amount === null}
-                      className={`${editable} text-right font-semibold tabular-nums ${large ? "w-32 text-3xl" : "w-24 text-xl"} ${d.amount ? "" : "ring-2 ring-expense/60"}`}
-                      value={d.amount ?? ""}
-                      onChange={(e) => set(d.id, { amount: e.target.value === "" ? null : Number(e.target.value) })}
-                    />
-                  </label>
-                )}
-              </div>
+              <input
+                aria-label="Title"
+                className={`${editable} mt-2 block w-full font-semibold ${large ? "text-3xl" : "text-xl"}`}
+                value={d.title}
+                onChange={(e) => set(d.id, { title: e.target.value })}
+              />
+              {d.type === "expense" && (
+                <label className="mt-1 flex items-baseline gap-2">
+                  <input
+                    aria-label="Amount" type="number" inputMode="decimal" min="0" step="0.01" placeholder="0.00"
+                    autoFocus={d.amount === null}
+                    className={`${editable} font-semibold tabular-nums ${large ? "w-36 text-4xl" : "w-28 text-2xl"} ${d.amount ? "" : "ring-2 ring-expense/60"}`}
+                    value={d.amount ?? ""}
+                    onChange={(e) => set(d.id, { amount: e.target.value === "" ? null : Number(e.target.value) })}
+                  />
+                  <span className="text-sm font-medium text-muted">{d.currency}</span>
+                </label>
+              )}
 
               {!large && (
                 <div className="mt-1 flex flex-col gap-1 text-muted">
@@ -125,7 +123,7 @@ export function ConfirmCard({
 
         {previewUrl && (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={previewUrl} alt="Receipt photo" className="mt-3 h-24 w-full rounded-2xl object-cover" />
+          <img src={previewUrl} alt="Receipt photo" className="mt-3 h-24 w-full rounded-2xl object-cover object-top" />
         )}
 
         <div className="mt-4 flex flex-col gap-1">

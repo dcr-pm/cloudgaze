@@ -57,7 +57,7 @@ export function RoutineButtons({
                 </span>
                 <span className="min-w-0">
                   <span className={`block truncate font-semibold ${large ? "text-4xl" : "text-[17px]"}`}>{routine.name}</span>
-                  <span className={`block truncate ${large ? "text-xl" : "text-sm"} ${done ? "" : "text-muted"}`}>
+                  <span className={`block truncate ${large ? "text-xl" : "text-[13px]"} ${done ? "" : "text-muted"}`}>
                     {done ? `${who} · ${clock(done.occurred_at)}` : routine.schedule?.time ? (large ? `Usually ${shortTime(routine.schedule.time)}` : shortTime(routine.schedule.time)) : "Tap when done"}
                   </span>
                 </span>

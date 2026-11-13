@@ -114,7 +114,7 @@ export function EntrySheet({
         {receiptUrl && (
           <a href={receiptUrl} target="_blank" rel="noreferrer" className="mt-4 block">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={receiptUrl} alt="Receipt" className="max-h-64 w-full rounded-2xl object-cover" />
+            <img src={receiptUrl} alt="Receipt" className="max-h-64 w-full rounded-2xl object-cover object-top" />
           </a>
         )}
 
